@@ -6,5 +6,5 @@
 
     
    <h3>credentials for admin :</h3>
-    email: admin@gmail.com
-    password: admin
+    <b>email</b>: admin@gmail.com <br>
+    <b>password</b>: admin
