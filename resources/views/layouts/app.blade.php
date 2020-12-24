@@ -23,9 +23,27 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                   Home
-                </a>
+
+                @if(isset(Auth::user()->role))
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <b>Home</b>
+                    </a>
+                    @if(Auth::user()->role ==2 )
+                        <a class="navbar-brand" style="margin-left: 1cm"
+                           href="{{ route('users') }}">
+                            Users
+                        </a>
+                    @else
+                        <a class="navbar-brand" style="margin-left: 1cm"
+                           href="{{ route('form.currency.exchange') }}">
+                            Currency exchange
+                        </a>
+                        <a class="navbar-brand" href="{{ route('form.send.money') }}">
+                            Send money
+                        </a>
+                    @endif
+
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             'balance' => 12345,
             'password' => password_hash(self::PASSWORD, PASSWORD_DEFAULT)
         ];
+
         DB::table('users')->insert($admin);
     }
 }
