@@ -6,21 +6,17 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Repositories\TransactionRepository;
 use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     protected $userRepository;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(UserRepository $userRepository)
+    protected $transactionRepository;
+
+    public function __construct(UserRepository $userRepository, TransactionRepository $transactionRepository)
     {
-        $this->middleware('auth');
         $this->userRepository = $userRepository;
+        $this->transactionRepository = $transactionRepository;
     }
 
     /**
@@ -30,10 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $currentUser = Auth::user();
+        $currentUser = $this->userRepository->getCurrentUser();
 
         if($currentUser->role == User::ROLE_ADMIN){
-            $transactions  = Transaction::all();
+            $transactions  = $this->transactionRepository->getAllTransactions();
             return view('admin.transactions' ,compact('transactions'));
         }
 

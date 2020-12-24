@@ -63,7 +63,7 @@ class TransactionController extends Controller
             return redirect()->route('home')->with('success', 'Exchange and transfer to the card success');
 
         } else if ($typeTransfer == 'user') {
-            $recipientUser = $this->userRepository->gerUserById($request->input('idRecipient'));
+            $recipientUser = $this->userRepository->getUserById($request->input('idRecipient'));
 
             DB::transaction(function () use ($transferValue, $currentUser, $recipientUser) {
                 $this->userRepository->decrementMoneyUser($currentUser, $transferValue);

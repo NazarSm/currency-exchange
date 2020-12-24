@@ -14,7 +14,7 @@ class UserRepository
        return Auth::user();
     }
 
-    public function gerUserById($id)
+    public function getUserById($id)
     {
         return User::find($id);
     }

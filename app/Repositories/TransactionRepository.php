@@ -22,5 +22,10 @@ class TransactionRepository
         return Transaction::select()->orderBy('id','DESC')->paginate(10);
     }
 
+    public function getAllTransactionsByUser($userId)
+    {
+        return Transaction::where('user_id', $userId)->orderBy('id','DESC')->paginate(10);
+    }
+
 
 }

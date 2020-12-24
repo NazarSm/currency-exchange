@@ -22,7 +22,8 @@
                         @foreach($transactions as $transaction)
                             <tr>
                                 <td>{{ $transaction->id }}</td>
-                                <td>{{ $transaction->user->name }}</td>
+                                <td><a href="{{route('show.user', [$transaction->user_id])}}">{{ $transaction->user->name }}</a></td>
+{{--                                <td>{{ $transaction->user->name }}</td>--}}
                                 <td>{{ $transaction->description }}</td>
                                 <td>{{ isset($transaction->recipient->name) ? $transaction->recipient->name : '' }}</td>
                                 <td>{{ $transaction->created_at }}</td>
